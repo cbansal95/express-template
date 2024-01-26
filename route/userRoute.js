@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
-
+const {userGet} = require('../handlers/databaseQueries')
 //get user
-router.get('/:id', (req, res) => {
-    res.send('Lorem ipsum')
+router.get('/:id', async (req, res) => {
+    const user = await userGet(req.db, req.params.id)
+    res.send(user)
 })
 
 //create user
