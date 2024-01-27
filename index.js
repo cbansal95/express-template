@@ -26,10 +26,9 @@ async function main() {
     if (res.headersSent) {
       return next(err)
     }
-    console.error(err.stack)
-    console.error(err.message)
-    if (err.message)
-      return res.status(500).send(err.message)
+    console.error(err)
+    if (err.responseCode)
+      return res.status(err.responseCode).send(err.message)
     else
       return res.status(500).send('Something broke!')
   })
