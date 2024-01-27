@@ -1,6 +1,6 @@
 const Joi = require('joi')
 
-const idSchema = Joi.number.greater(0)
+const idSchema = Joi.number().greater(0)
 
 function validateID(id) {
     try {
