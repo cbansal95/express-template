@@ -3,10 +3,7 @@ const sqlite3 = require('sqlite3')
 const { open } = require('sqlite')
 const userRoute = require('./route/userRoute')
 
-
-
-
-async function main() {
+async function main () {
   const db = await open({
     filename: 'database.db',
     driver: sqlite3.Database
@@ -27,10 +24,7 @@ async function main() {
       return next(err)
     }
     console.error(err)
-    if (err.responseCode)
-      return res.status(err.responseCode).send(err.message)
-    else
-      return res.status(500).send('Something broke!')
+    if (err.responseCode) { return res.status(err.responseCode).send(err.message) } else { return res.status(500).send('Something broke!') }
   })
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
