@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const sqlite3 = require('sqlite3')
 const { open } = require('sqlite')
 const userRoute = require('./route/userRoute')
@@ -18,6 +19,7 @@ async function main () {
   }
 
   app.use(attachDatabase)
+  app.use(cors())
   app.use('/user', userRoute)
   app.use((err, req, res, next) => {
     if (res.headersSent) {
