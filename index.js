@@ -26,7 +26,7 @@ async function main () {
       return next(err)
     }
     console.error(err)
-    if (err.responseCode) { return res.status(err.responseCode).send(err.message) } else { return res.status(500).send('Something broke!') }
+    if (err.responseCode && err.responseCode !== 500) { return res.status(err.responseCode).send(err.message) } else { return res.status(500).send('Something broke!') }
   })
   app.listen(port, () => {
     console.log(`Server listening on port ${port}`)

@@ -18,4 +18,8 @@ function notFoundError (message) {
   return new BaseError(message, 'NotFound', 404)
 }
 
-module.exports = { userInputValidationError, fetchedObjectValidationError, notFoundError }
+function databaseError (message) {
+  return new BaseError(message, 'DatabaseError', 500)
+}
+
+module.exports = { userInputValidationError, fetchedObjectValidationError, notFoundError, databaseError }
